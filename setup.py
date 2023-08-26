@@ -20,6 +20,8 @@ setup(
     install_requires=['pyswisseph==2.08.00-1'],
     
     # Metadata
+    long_description="This Script uses flatlib sidereal to generate Kundli",
+    long_description_content_type="text",
     description='Python library for Astrology',
     url='https://github.com/EH30/AstroKundli',
     keywords=['Astrology', 'Sidereal Astrology', "Kundli"],
