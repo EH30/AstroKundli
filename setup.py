@@ -22,7 +22,7 @@ setup(
     # Metadata
     description='Python library for Astrology',
     url='https://github.com/EH30/AstroKundli',
-    keywords=['Astrology', 'Sidereal Astrology'],
+    keywords=['Astrology', 'Sidereal Astrology', "Kundli"],
     license='MIT',
     
     # Authoring
