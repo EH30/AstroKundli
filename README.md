@@ -48,7 +48,8 @@ print(Transit_Chart)
 # Output: 
 # {'1': {'sign_num': 12, 'asc': '+25:34:23>', 'planets': {'Ne': '+02:43:02'}}, 
 # '2': {'sign_num': 1, 'asc': None, 'planets': {'Ju': '+21:16:05', 'Ra': '+03:25:39', 'Ur': '+28:53:15'}}, 
-# '3': {'sign_num': 2, 'asc': None, 'planets': {}}, '4': {'sign_num': 3, 'asc': None, 'planets': {}}, 
+# '3': {'sign_num': 2, 'asc': None, 'planets': {}}, 
+# '4': {'sign_num': 3, 'asc': None, 'planets': {}}, 
 # '5': {'sign_num': 4, 'asc': None, 'planets': {'Ve': '+19:23:12'}}, 
 # '6': {'sign_num': 5, 'asc': None, 'planets': {'Su': '+09:05:54', 'Me': '+27:14:48'}}, 
 # '7': {'sign_num': 6, 'asc': None, 'planets': {'Ma': '+05:19:09'}}, 
