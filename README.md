@@ -63,11 +63,15 @@ print(Transit_Chart)
 
 
 ## Installation
-download AstroKundli      
-run powershell as an Administrator and cd to the AstroKundli folder.   
+
+```
+pip install AstroKundli
+```
+   
+or   
+
+download AstroKundli from https://github.com/EH30/AstroKundli/     
+run powershell as an Administrator and cd to the AstroKundli folder then enter     
 ``` 
 pip install .
 ```   
-
-
-

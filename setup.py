@@ -2,10 +2,14 @@ from setuptools import setup
 from setuptools import find_packages
 
 
+long_description = ""
+with open("README.md", "r") as opn:
+    long_description = opn.read()
+
 setup(
     # Project
     name='AstroKundli',
-    version='1.0.0',
+    version='1.0.2',
     
     # Sources
     packages=find_packages(),
@@ -20,8 +24,8 @@ setup(
     install_requires=['pyswisseph==2.08.00-1'],
     
     # Metadata
-    long_description="This Script uses flatlib sidereal to generate Kundli",
-    long_description_content_type="text",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     description='Python library for Astrology',
     url='https://github.com/EH30/AstroKundli',
     keywords=['Astrology', 'Sidereal Astrology', "Kundli"],
