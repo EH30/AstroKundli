@@ -59,18 +59,25 @@ class GKundli:
         ascendant  = str(chart.get(const.ASC)).split(" ")[2]
         kundli = {
             "1": {"sign_num":self.sign_names[str(chart.get(const.HOUSE1)).split(" ")[1].lower()], "asc":ascendant, "planets":{}},
-            "2": {"sign_num":self.sign_names[str(chart.get(const.HOUSE2)).split(" ")[1].lower()], "planets":{}},
-            "3": {"sign_num":self.sign_names[str(chart.get(const.HOUSE3)).split(" ")[1].lower()], "planets":{}},
-            "4": {"sign_num":self.sign_names[str(chart.get(const.HOUSE4)).split(" ")[1].lower()], "planets":{}},
-            "5": {"sign_num":self.sign_names[str(chart.get(const.HOUSE5)).split(" ")[1].lower()], "planets":{}},
-            "6": {"sign_num":self.sign_names[str(chart.get(const.HOUSE6)).split(" ")[1].lower()], "planets":{}},
-            "7": {"sign_num":self.sign_names[str(chart.get(const.HOUSE7)).split(" ")[1].lower()], "planets":{}},
-            "8": {"sign_num":self.sign_names[str(chart.get(const.HOUSE8)).split(" ")[1].lower()], "planets":{}},
-            "9": {"sign_num":self.sign_names[str(chart.get(const.HOUSE9)).split(" ")[1].lower()], "planets":{}},
-            "10": {"sign_num":self.sign_names[str(chart.get(const.HOUSE10)).split(" ")[1].lower()], "planets":{}},
-            "11": {"sign_num":self.sign_names[str(chart.get(const.HOUSE11)).split(" ")[1].lower()], "planets":{}},
-            "12": {"sign_num":self.sign_names[str(chart.get(const.HOUSE12)).split(" ")[1].lower()], "planets":{}},
+            "2": {"sign_num":0, "planets":{}},
+            "3": {"sign_num":0, "planets":{}},
+            "4": {"sign_num":0, "planets":{}},
+            "5": {"sign_num":0, "planets":{}},
+            "6": {"sign_num":0, "planets":{}},
+            "7": {"sign_num":0, "planets":{}},
+            "8": {"sign_num":0, "planets":{}},
+            "9": {"sign_num":0, "planets":{}},
+            "10": {"sign_num":0, "planets":{}},
+            "11": {"sign_num":0, "planets":{}},
+            "12": {"sign_num":0, "planets":{}},
         }
+        temp = self.sign_names[str(chart.get(const.HOUSE1)).split(" ")[1].lower()]
+        for i in range(2, 13):
+            temp += 1
+            if temp > 12:
+                temp = 1
+            kundli[str(i)]["sign_num"] = temp
+        
         planets = [
             str(chart.get(const.SUN)).split(" "), str(chart.get(const.MOON)).split(" "), str(chart.get(const.MARS)).split(" "), str(chart.get(const.JUPITER)).split(" "),
             str(chart.get(const.MERCURY)).split(" "), str(chart.get(const.SATURN)).split(" "), str(chart.get(const.VENUS)).split(" "), str(chart.get(const.NORTH_NODE)).split(" "),
@@ -124,3 +131,5 @@ class GKundli:
                         for planet in transit[house]["planets"]:
                             houses[item]["planets"][planet] = transit[house]["planets"][planet]
         return houses
+    
+    

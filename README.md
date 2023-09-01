@@ -64,6 +64,7 @@ print(Transit_Chart)
 
 ## Installation
 
+You might need to install C++ build tools or install the **Desktop development with C++** from visual studio installer if you're on Windows.   
 ```
 pip install AstroKundli
 ```
