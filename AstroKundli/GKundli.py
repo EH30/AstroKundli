@@ -4,7 +4,7 @@ from FlatlibAstroSidereal.geopos import GeoPos
 from FlatlibAstroSidereal.chart import Chart, const
 
 class GKundli:
-    def __init__(self, year, month, day, hour, minute, utc, lat, lng, ayan="lahiri"):
+    def __init__(self, year, month, day, hour, minute, utc, latitude, longitude, ayan="lahiri", useasc=True):
         """
         year: Birth Year
         month: Birth Month
@@ -12,8 +12,10 @@ class GKundli:
         house: Birth Hour
         minute: Birth Minute
         utc: Country UTC
-        lat: latitude
-        lng: longitude
+        latitude: latitude
+        longitude: longitude
+        ayan: ayanamsa 
+        useasc: const.ASC for first house if set to True else it will use const.HOUSE1
         Example: kundli = GKundli(1971,6, 28, 0, 0,"2:00", 25.7479, 28.2293)
         """
         self.year       = year
@@ -22,9 +24,10 @@ class GKundli:
         self.hour       = hour
         self.minute     = minute
         self.utc        = utc
-        self.latitude   = lat
-        self.longitude  = lng
+        self.latitude   = latitude
+        self.longitude  = longitude
         self.ayan       = ayan.lower()
+        self.usesasc    = useasc
         self.sign_names = {
             "aries": 1, "taurus": 2, "gemini": 3, "cancer": 4, "leo": 5, "virgo": 6, 
             "libra": 7, "scorpio": 8, "sagittarius": 9, "capricorn": 10, "aquarius": 11, "pisces":12
@@ -71,13 +74,16 @@ class GKundli:
             "11": {"sign_num":0, "planets":{}},
             "12": {"sign_num":0, "planets":{}},
         }
-        temp = self.sign_names[str(chart.get(const.HOUSE1)).split(" ")[1].lower()]
+        temp = self.sign_names[str(chart.get(const.ASC)).split(" ")[1].lower()]
+        if not self.usesasc:
+            temp = self.sign_names[str(chart.get(const.HOUSE1)).split(" ")[1].lower()]
+
         for i in range(2, 13):
             temp += 1
             if temp > 12:
                 temp = 1
             kundli[str(i)]["sign_num"] = temp
-        
+
         planets = [
             str(chart.get(const.SUN)).split(" "), str(chart.get(const.MOON)).split(" "), str(chart.get(const.MARS)).split(" "), str(chart.get(const.JUPITER)).split(" "),
             str(chart.get(const.MERCURY)).split(" "), str(chart.get(const.SATURN)).split(" "), str(chart.get(const.VENUS)).split(" "), str(chart.get(const.NORTH_NODE)).split(" "),
@@ -131,5 +137,4 @@ class GKundli:
                         for planet in transit[house]["planets"]:
                             houses[item]["planets"][planet] = transit[house]["planets"][planet]
         return houses
-    
-    
+
