@@ -4,7 +4,7 @@ from FlatlibAstroSidereal.geopos import GeoPos
 from FlatlibAstroSidereal.chart import Chart, const
 
 class GKundli:
-    def __init__(self, year, month, day, hour, minute, utc, latitude, longitude, ayan="lahiri", useasc=True):
+    def __init__(self, year:int, month:int, day:int, hour:int, minute:int, utc:str, latitude:float, longitude:float, ayan="lahiri", useasc=True):
         """
         year: Birth Year
         month: Birth Month
@@ -55,6 +55,21 @@ class GKundli:
         elif self.ayan == "galcenter_55ag":
             return const.AY_GALCENTER_5SAG
     
+    def get_retrograde_planets_lagna(self):
+        date = Datetime([self.year, self.month, self.day], ['+',self.hour, self.minute,0], "+"+self.utc)
+        pos = GeoPos(self.latitude, self.longitude)
+        chart = Chart(date, pos, IDs=const.LIST_OBJECTS, mode=self.get_ayan())
+        planets = {
+            "SUN":chart.get(const.SUN).isRetrograde(), "MOON":chart.get(const.MOON).isRetrograde(), "MARS":chart.get(const.MARS).isRetrograde(), "JUPITER":chart.get(const.JUPITER).isRetrograde(),
+            "MERCURY":chart.get(const.MERCURY).isRetrograde(), "SATURN":chart.get(const.SATURN), "VENUS":chart.get(const.VENUS).isRetrograde(), "NORTH_NODE":chart.get(const.NORTH_NODE).isRetrograde(),
+            "SOUTH_NODE":chart.get(const.SOUTH_NODE).isRetrograde(), "PLUTO":chart.get(const.PLUTO).isRetrograde(), "NEPTUNE":chart.get(const.NEPTUNE).isRetrograde(), "URANUS":chart.get(const.URANUS).isRetrograde()
+        }
+        output = []
+        for planet in planets:
+            if planets[planet] == True:
+                output.append(planet)
+        return output
+
     def lagnaChart(self):
         date = Datetime([self.year, self.month, self.day], ['+',self.hour, self.minute,0], "+"+self.utc)
         pos = GeoPos(self.latitude, self.longitude)
@@ -77,7 +92,6 @@ class GKundli:
         temp = self.sign_names[str(chart.get(const.ASC)).split(" ")[1].lower()]
         if not self.usesasc:
             temp = self.sign_names[str(chart.get(const.HOUSE1)).split(" ")[1].lower()]
-
         for i in range(2, 13):
             temp += 1
             if temp > 12:
