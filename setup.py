@@ -9,7 +9,7 @@ with open("README.md", "r") as opn:
 setup(
     # Project
     name='AstroKundli',
-    version='3.0.0',
+    version='3.1.0',
     
     # Sources
     packages=find_packages(),
